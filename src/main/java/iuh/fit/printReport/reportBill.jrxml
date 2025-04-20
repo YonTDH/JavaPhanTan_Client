@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportBill" pageWidth="226" pageHeight="842" columnWidth="204" leftMargin="11" rightMargin="11" topMargin="0" bottomMargin="0" uuid="f149244d-9ac6-4ecb-afbf-d048107badd9">
+	<parameter name="ngay" class="java.lang.String"/>
+	<parameter name="tongTien" class="java.lang.String"/>
+	<parameter name="chietKhau" class="java.lang.String"/>
+	<parameter name="phaiTra" class="java.lang.String"/>
+	<parameter name="ghiChu" class="java.lang.String"/>
+	<parameter name="khuyenMai" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="ten" class="java.lang.String"/>
+	<field name="soL" class="java.lang.Integer"/>
+	<field name="gia" class="java.lang.Double"/>
+	<field name="tien" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="128" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="200" height="30" uuid="a74ad124-82a2-4de6-80f2-cc922c3f79fb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OneEight]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="30" width="200" height="20" uuid="4ca026a6-f2bf-47b8-82e4-e11f9bc4e9df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="9"/>
+				</textElement>
+				<text><![CDATA[12 Nguyễn Văn Bảo, P.4, Q.Gò Vấp, TP.HCM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="50" width="100" height="20" uuid="eb1c9b6e-d46c-4d83-88cc-8b749bd7e6d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="9"/>
+				</textElement>
+				<text><![CDATA[ĐT: 0965180413]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="70" width="200" height="20" uuid="06a3ed48-b3d3-4a82-8867-5abedd0255ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PHIẾU THANH TOÁN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="90" width="38" height="18" uuid="ff90958b-4d53-4437-b01c-6d7c75f04b19"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Ngày:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="90" width="162" height="18" uuid="5015110a-0420-4204-a5ec-892c9e55c4ca"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ngay}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="108" width="202" height="15" uuid="acb16351-380c-41e8-8045-20c076348a4e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[............................................................................]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="16">
+			<staticText>
+				<reportElement x="0" y="1" width="80" height="15" uuid="3e225a32-0c38-4d16-ad7c-9ca2e19e1be6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0cd58d4b-d5f9-4417-bdc0-17211beb0968"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Dotted"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Tên]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="1" width="40" height="15" uuid="b3bafe96-309d-4114-92db-bddafd11c7f0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e8380692-057e-4d49-aea0-6de92b3e1f01"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Dotted"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Giá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="1" width="51" height="15" uuid="f60280b5-6ea3-4e16-ad8a-12789a0e1bb5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bc777f9-cbdc-4a7f-a777-7a0651f3635e"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Dotted"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Thành tiền]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="1" width="33" height="15" uuid="5199ad1f-1b97-49e4-b19e-8c309f11e9ef">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fa700026-6a33-455a-979b-ba8b1859138e"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Dotted"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="15" uuid="332406d6-dffb-429b-8f58-02f32be9da76">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0cd58d4b-d5f9-4417-bdc0-17211beb0968"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ten}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="33" height="15" uuid="2ca4b00c-959b-4f9d-8195-7ec9434d1423">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fa700026-6a33-455a-979b-ba8b1859138e"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{soL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="40" height="15" uuid="ab7e82fd-4749-4bdd-96ec-37a8fc960ab4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e8380692-057e-4d49-aea0-6de92b3e1f01"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="0" width="51" height="15" uuid="e4ae9553-9c72-4567-b224-f0c8bab4d0e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bc777f9-cbdc-4a7f-a777-7a0651f3635e"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="253" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="69" width="78" height="18" uuid="d2509ff8-6831-47ed-b05b-9e600faab567"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Tổng cộng:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="69" width="123" height="18" uuid="352abdfc-69e7-4bd1-b557-0df28c40f80c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tongTien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="87" width="78" height="18" uuid="738851a5-e6e1-45ee-a09d-1969ded3a77f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Chiết khấu:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="87" width="123" height="18" uuid="271042c8-f0e6-4914-9af8-f95dc6bd7884"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{chietKhau}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="123" width="78" height="18" uuid="dce59847-bb2c-41ca-8603-9685dafe3dd4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Phải trả:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="123" width="123" height="18" uuid="1c355399-4736-4c1b-ad59-c95fda46ff02"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{phaiTra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="190" width="201" height="20" uuid="486d1c4a-5c2b-427d-9098-2cc17abb7861"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CẢM ƠN QUÝ KHÁCH - HẸN GẶP LẠI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="53" width="204" height="15" uuid="2034e8eb-b815-423a-93d5-e929feaa8946">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[............................................................................]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="38" y="24" width="166" height="26" uuid="e5e5c816-9970-4a4b-9619-723cf1ef62cd"/>
+				<textElement>
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ghiChu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="24" width="38" height="18" uuid="6f6eff0a-d790-43b5-9daa-c910114ba6f3"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Ghi chú:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="7" width="204" height="15" uuid="1857efe4-acc4-4c68-b370-b6053c13870b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[............................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="105" width="78" height="18" uuid="f5b9a49f-d161-47cc-8e21-ddfa6a27f11b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Khuyến mãi:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="105" width="123" height="18" uuid="64fea4f3-d544-4606-a453-8e7a89ad96dc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{khuyenMai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="141" width="201" height="19" uuid="f29904f5-da4b-4842-811f-4d7d773c20bc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<text><![CDATA[Hóa đơn đã bao gồm VAT 8%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="160" width="201" height="30" uuid="055195e4-883d-40a6-8ce2-e77ad44aea57"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Sản phẩm được đổi trả trong vòng 7 ngày, quý khách hàng vui lòng mang theo hóa đơn để thực hiện đổi trả hàng]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

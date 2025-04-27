@@ -7,9 +7,9 @@ import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-//import dao.DAO_TaiKhoan;
-//import entity.TaiKhoan;
-import lookup.LookupNaming;
+import iuh.fit.dao.*;
+import iuh.fit.models.*;
+import iuh.fit.lookup.LookupNaming;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -28,7 +28,7 @@ public class FrmLogin extends JFrame {
     public static String emailDN = "";
     private int otp;
     
-    private DAO_TaiKhoan dao_TaiKhoan = LookupNaming.lookup_TaiKhoan(); 
+    private DAO_TaiKhoan dao_TaiKhoan = LookupNaming.lookup_TaiKhoan();
     
 	/**
      * Creates new form FrmChinh

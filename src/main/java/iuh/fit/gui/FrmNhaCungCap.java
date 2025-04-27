@@ -1,9 +1,16 @@
 
 package iuh.fit.gui;
 
-import lookup.LookupNaming;
+import iuh.fit.dao.*;
+import iuh.fit.models.*;
+import iuh.fit.lookup.LookupNaming;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,11 +38,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.InputMap;
@@ -209,9 +214,8 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         int stt = 1;
         for (NhaCungCap ncc : data) {
             String[] newRow = {String.format("%s", stt),
-                String.format("%s", ncc.getMaNCC()),
-                String.format("%s", ncc.getTenNCC()),
-                String.format("%s", ncc.getEmail()),
+                String.format("%s", ncc.getMaNhaCungCap()),
+                String.format("%s", ncc.getTenNhaCungCap()),
                 String.format("%s", ncc.getSoDienThoai())
             };
             stt++;
@@ -412,30 +416,20 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
                         cell = row.createCell(3, CellType.STRING);
                         cell.setCellValue("Số điện thoại");
                         cell = row.createCell(4, CellType.STRING);
-                        cell.setCellValue("Email");
-                        cell = row.createCell(5, CellType.STRING);
                         cell.setCellValue("Địa chỉ");
-                        cell = row.createCell(6, CellType.STRING);
-                        cell.setCellValue("Ghi chú");
-                        cell = row.createCell(7, CellType.STRING);
 
                         for (int i = 0; i < dsNCC.size(); i++) {
                             row = sheet.createRow(3 + i);
                             cell = row.createCell(0, CellType.NUMERIC);
                             cell.setCellValue(i + 1);
                             cell = row.createCell(1, CellType.STRING);
-                            cell.setCellValue(dsNCC.get(i).getMaNCC());
+                            cell.setCellValue(dsNCC.get(i).getMaNhaCungCap());
                             cell = row.createCell(2, CellType.STRING);
-                            cell.setCellValue(dsNCC.get(i).getTenNCC());
+                            cell.setCellValue(dsNCC.get(i).getTenNhaCungCap());
                             cell = row.createCell(3, CellType.STRING);
                             cell.setCellValue(dsNCC.get(i).getSoDienThoai());
                             cell = row.createCell(4, CellType.STRING);
-                            cell.setCellValue(dsNCC.get(i).getEmail());
-                            cell = row.createCell(5, CellType.STRING);
-                            cell.setCellValue(dsNCC.get(i).getDiaChiNCC());
-                            cell = row.createCell(6, CellType.STRING);
-                            cell.setCellValue(dsNCC.get(i).getGhiChu());
-                            cell = row.createCell(7, CellType.STRING);
+                            cell.setCellValue(dsNCC.get(i).getDiaChi());
                         }
 
                         FileOutputStream out = new FileOutputStream(new File(saveFile.toString()));
@@ -468,9 +462,8 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
             jTable2.clearSelection();
             for (NhaCungCap ncc : data) {
                 model.addRow(new String[]{String.valueOf(iD),
-                    ncc.getMaNCC(),
-                    ncc.getTenNCC(),
-                    ncc.getEmail(),
+                    ncc.getMaNhaCungCap(),
+                    ncc.getTenNhaCungCap(),
                     ncc.getSoDienThoai()
                 });
                 iD++;
@@ -1160,7 +1153,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
             JOptionPane.showMessageDialog(null, "Chưa nhập đầy đủ dữ liệu");
         }
         else if(validData()){
-            NhaCungCap nccThem = new NhaCungCap(maNCC, tenNCC, diaChi, soDienThoai, email, ghiChu);
+            NhaCungCap nccThem = new NhaCungCap(maNCC, tenNCC, diaChi, soDienThoai, new HashSet<SanPham>());
             try {
 				dao_ncc.themNhaCungCap(nccThem);
 			} catch (RemoteException e) {
@@ -1198,8 +1191,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
 	            txtTimKH5.setText(model.getValueAt(jTable2.getSelectedRow(), 2).toString());
 	            txtTimKH6.setText(model.getValueAt(jTable2.getSelectedRow(), 3).toString());
 	            txtTimKH9.setText(model.getValueAt(jTable2.getSelectedRow(), 4).toString());
-	            jTextArea5.setText(ncc.getDiaChiNCC());
-	            jTextArea6.setText(ncc.getGhiChu());
+	            jTextArea5.setText(ncc.getDiaChi());
 	            txtTimKH13.setEnabled(false);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -1256,10 +1248,9 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
         String maNCCSua = model.getValueAt(jTable2.getSelectedRow(), 1).toString();
         String tenNCCMoi = txtTimKH5.getText();
         String soDienThoaiMoi = txtTimKH9.getText();
-        String emailMoi = txtTimKH6.getText();
         String diaChiMoi = jTextArea5.getText();
-        String ghiChuMoi = jTextArea6.getText();
-        NhaCungCap nccMoi = new NhaCungCap(maNCCSua, tenNCCMoi, diaChiMoi, soDienThoaiMoi, emailMoi, ghiChuMoi);
+        NhaCungCap nccMoi = new NhaCungCap(maNCCSua, tenNCCMoi, diaChiMoi, soDienThoaiMoi, new HashSet<SanPham>() {
+        });
         if(jTable2.getSelectedRow()<0)
             JOptionPane.showMessageDialog(null, "Hãy chọn dòng cần sửa");
         else if (validData()) {
@@ -1307,7 +1298,7 @@ public class FrmNhaCungCap extends javax.swing.JPanel implements MouseListener {
 
     private void lblNameLoginAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblNameLoginAncestorAdded
         // TODO add your handling code here:
-        lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
+        lblNameLogin.setText(FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
 
 

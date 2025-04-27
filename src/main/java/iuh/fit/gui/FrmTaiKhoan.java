@@ -5,17 +5,16 @@
 package iuh.fit.gui;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-//import dao.DAO_TaiKhoan;
-//import entity.NhanVien;
-//import entity.TaiKhoan;
-import lookup.LookupNaming;
+import iuh.fit.dao.*;
+import iuh.fit.lookup.LookupNaming;
+import iuh.fit.models.NhanVien;
+import iuh.fit.models.TaiKhoan;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
@@ -1695,7 +1694,7 @@ public class FrmTaiKhoan extends JPanel {
     
     private void lblNameLoginAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblNameLoginAncestorAdded
         // TODO add your handling code here:
-        lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
+        lblNameLogin.setText(FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
     
 

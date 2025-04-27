@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-//import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JDateChooser;
 //
 //import dao.DAO_NhanVien;
 //import entity.CaLamViec;
@@ -23,7 +23,9 @@ import javax.swing.table.DefaultTableModel;
 //import entity.KhachHang;
 //import entity.NhanVien;
 //import entity.TaiKhoan;
-import lookup.LookupNaming;
+import iuh.fit.dao.DAO_NhanVien;
+import iuh.fit.lookup.LookupNaming;
+import iuh.fit.models.*;
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -54,13 +56,13 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellType;
-//import org.apache.poi.ss.usermodel.DataFormatter;
-//import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.xssf.usermodel.XSSFRow;
-//import org.apache.poi.xssf.usermodel.XSSFSheet;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FrmNhanVien extends JPanel {
 
@@ -2719,7 +2721,7 @@ public class FrmNhanVien extends JPanel {
         String soDienThoai = txtTimKH12.getText();
         String gioiTinh = String.valueOf(jComboBox12.getSelectedItem());
         String email = txtTimKH10.getText();
-        TaiKhoan taiKhoan = new TaiKhoan(email, "123456", email);
+        TaiKhoan taiKhoan = new TaiKhoan(email);
 
         int tinhTrangLamViec = Integer.parseInt(String.valueOf(jComboBox2.getSelectedItem()));
         String caLv = String.valueOf(jComboBox5.getSelectedItem());
@@ -2941,7 +2943,7 @@ public class FrmNhanVien extends JPanel {
 
     private void lblNameLoginAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblNameLoginAncestorAdded
         // TODO add your handling code here:
-        lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
+        lblNameLogin.setText(FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

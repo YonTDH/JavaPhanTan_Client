@@ -4,24 +4,14 @@
  */
 package iuh.fit.gui;
 
-//import dao.DAO_Sach;
-//import dao.DAO_ThongKe;
-//import dao.DAO_VanPhongPham;
-//import entity.MonthlyRevenueInfo;
-//import entity.ProductInfo;
-//import entity.Sach;
-//import entity.VanPhongPham;
-//import groovyjarjarcommonscli.ParseException;
-import lookup.LookupNaming;
+import iuh.fit.dao.*;
+import iuh.fit.lookup.LookupNaming;
+import iuh.fit.models.MonthlyRevenueInfo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.rmi.RemoteException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,18 +20,22 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-//import org.jfree.chart.ChartFactory;
-//import org.jfree.chart.ChartPanel;
-//import org.jfree.chart.JFreeChart;
-//import org.jfree.chart.plot.CategoryPlot;
-//import org.jfree.chart.plot.PiePlot;
-//import org.jfree.chart.plot.PlotOrientation;
-//import org.jfree.chart.plot.XYPlot;
-//import org.jfree.chart.renderer.category.BarRenderer;
-//import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-//import org.jfree.data.category.DefaultCategoryDataset;
-//import org.jfree.data.general.DefaultPieDataset;
-//import org.jfree.data.statistics.HistogramDataset;
+
+import iuh.fit.models.ProductInfo;
+import iuh.fit.models.Sach;
+import iuh.fit.models.VanPhongPham;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.statistics.HistogramDataset;
 
 public class FrmThongKe extends JPanel {
 
@@ -1132,7 +1126,7 @@ public class FrmThongKe extends JPanel {
 
     private void lblNameLoginAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblNameLoginAncestorAdded
         // TODO add your handling code here:
-        lblNameLogin.setText(gui.FrmLogin.tenNguoiDung);
+        lblNameLogin.setText(FrmLogin.tenNguoiDung);
     }//GEN-LAST:event_lblNameLoginAncestorAdded
 
     private void jRadioButton4ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed

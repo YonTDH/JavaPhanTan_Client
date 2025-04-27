@@ -1,27 +1,7 @@
 package iuh.fit.gui;
 
-//import dao.DAO_ChiTietHoaDon;
-//import dao.DAO_HoaDon;
-//import dao.DAO_KhachHang;
-//import dao.DAO_KhuyenMai;
-//import dao.DAO_MauSac;
-//import dao.DAO_NhaCungCap;
-//import dao.DAO_NhanVien;
-//import dao.DAO_NhomSanPham;
-//import dao.DAO_Sach;
-//import dao.DAO_VanPhongPham;
-//import entity.ChiTietHoaDon;
-//import entity.HoaDon;
-//import entity.KhachHang;
-//import entity.KhuyenMai;
-//import entity.NhanVien;
-//import entity.NhomKhachHang;
-//import entity.NhomSanPham;
-//import entity.Sach;
-//import entity.SanPham;
-//import entity.VanPhongPham;
 import iuh.fit.gui.FrmChinh;
-import lookup.LookupNaming;
+import iuh.fit.lookup.LookupNaming;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
 import menuGui.TableActionEvent;
@@ -79,6 +59,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
+import iuh.fit.dao.*;
+import iuh.fit.models.*;
 
 public class FrmLapHoaDon extends javax.swing.JPanel {
 
@@ -296,10 +279,10 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 			}
 		} else {
 			NhomSanPham nsp = dao_nsp.getNsptheoTen(nhom);
-			String ma = nsp.getMaNhomSanPham();
+			String ma = nsp.getMaNhom();
 			int stt = 1;
 			for (Sach s : dsSach) {
-				if (s.getNhomSanPham().getMaNhomSanPham().equalsIgnoreCase(ma) && s.getSoLuongTon() != 0) {
+				if (s.getNhomSanPham().getMaNhom().equalsIgnoreCase(ma) && s.getSoLuongTon() != 0) {
 					md.addRow(new Object[]{stt, s.getMaSanPham(), s.getTenSanPham(), s.getDonGiaBan(),
 							s.getSoLuongTon(), s.getTinhTrang()
 
@@ -309,7 +292,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
 			}
 			for (VanPhongPham vpp : dsVpp) {
-				if (vpp.getNhomSanPham().getMaNhomSanPham().equalsIgnoreCase(ma) && vpp.getSoLuongTon() != 0) {
+				if (vpp.getNhomSanPham().getMaNhom().equalsIgnoreCase(ma) && vpp.getSoLuongTon() != 0) {
 					md.addRow(new Object[]{stt, vpp.getMaSanPham(), vpp.getTenSanPham(), vpp.getDonGiaBan(),
 							vpp.getSoLuongTon(), vpp.getTinhTrang()
 
@@ -572,8 +555,8 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 		DefaultTableModel tableModal = (DefaultTableModel) tableChonKH.getModel();
 		int stt = 1;
 		for (KhachHang kh : dsKH) {
-			if (!kh.getTenKhachHang().equals("Khách lẻ")) {
-				tableModal.addRow(new Object[]{stt, kh.getMaKhachHang(), kh.getTenKhachHang(), kh.getSoDienThoai()});
+			if (!kh.getHoTenKH().equals("Khách lẻ")) {
+				tableModal.addRow(new Object[]{stt, kh.getMaKhachHang(), kh.getHoTenKH(), kh.getSoDienThoai()});
 				stt++;
 			}
 
@@ -671,7 +654,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 			lblTongTienThanhToan.setText(deciFormat.format(tien));
 			lblTongSoLuong.setText(tongSoLuongSp + "");
 		} else {
-			if (kh.getNhomKhachHang().equals(kh.getNhomKhachHang().KHACHVIP)) {
+			if (kh.getNhomKhachHang().equals(kh.getNhomKhachHang().VIP)) {
 				double tienKhuyenMai = apDungKhuyenMai();
 				double chietKhau = 0.0;
 				if (txtTienChietKhau.getText().equalsIgnoreCase("") || Double.parseDouble(txtTienChietKhau.getText()) < 0) {
@@ -707,7 +690,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 				LocalDateTime ngayLap = LocalDateTime.now();
 				KhachHang kh = null;
 				if (lblTenKH.getText().equals("Khách lẻ")) {
-					kh = new KhachHang(lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0);
+					kh = new KhachHang(lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.THUONG, 0, 0);
 					dao_kh.themKhachHang(kh);
 				} else {
 					kh = dao_kh.getKHTheoMa(lblMaKH.getText());
@@ -807,7 +790,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
 				KhachHang kh = null;
 				if (lblTenKH.getText().equals("Khách lẻ")) {
-					kh = new KhachHang(lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.KHACHLE, 0, 0);
+					kh = new KhachHang(lblMaKH.getText(), "Khách lẻ", "", NhomKhachHang.THUONG, 0, 0);
 					dao_kh.updateKhachHang(kh);
 				} else {
 					kh = dao_kh.getKHTheoMa(lblMaKH.getText());
@@ -838,18 +821,18 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 	}
 
 	public void createBarcode() {
-		try {
-			Linear barcode = new Linear();
-			barcode.setType(Linear.CODE128B);
-			barcode.setData(txtTimSanPhamChon.getText());
-			barcode.setI(11.0f);
-			String fname = txtTimSanPhamChon.getText();
-			barcode.renderBarcode("src/img/" + fname + ".png");
-			JOptionPane.showMessageDialog(null, "Done");
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Bug barcode");
-
-		}
+//		try {
+//			Linear barcode = new Linear();
+//			barcode.setType(Linear.CODE128B);
+//			barcode.setData(txtTimSanPhamChon.getText());
+//			barcode.setI(11.0f);
+//			String fname = txtTimSanPhamChon.getText();
+//			barcode.renderBarcode("src/img/" + fname + ".png");
+//			JOptionPane.showMessageDialog(null, "Done");
+//		} catch (Exception e) {
+//			JOptionPane.showMessageDialog(null, "Bug barcode");
+//
+//		}
 	}
 
 	public boolean themSP() throws RemoteException {
@@ -2591,13 +2574,13 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 			String maKH = modelChonKH.getValueAt(rowChooser, 1).toString();
 			KhachHang kh = dao_kh.getKHTheoMa(maKH);
 			//********
-			lblTenKH.setText(kh.getTenKhachHang());
+			lblTenKH.setText(kh.getHoTenKH());
 			lblSDTKH.setText(kh.getSoDienThoai());
-			lblTongDonMua.setText(kh.getSoLuongHoaDon() + "");
-			lblTongTienMua.setText(kh.getTongTienMua() + "");
+//			lblTongDonMua.setText(kh.getSoLuongHoaDon() + "");
+//			lblTongTienMua.setText(kh.getTongTienMua() + "");
 			lblMaKH.setText(maKH);
 			lblNhomKhachHang.setText(kh.getNhomKhachHang() + "");
-			if (kh.getNhomKhachHang() == kh.getNhomKhachHang().KHACHVIP) {
+			if (kh.getNhomKhachHang() == kh.getNhomKhachHang().VIP) {
 				createInit();
 			}
 			jDialogChonKH.setVisible(false);

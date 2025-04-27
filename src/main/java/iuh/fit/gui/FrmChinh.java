@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package iuh.fit.gui;
 
-
-//import dao.DAO_HoaDon;
-//import dao.DAO_NhanVien;
-//import entity.HoaDon;
-
-import gui.FrmKhachTraHang;
-import lookup.LookupNaming;
+import iuh.fit.gui.FrmKhachTraHang;
+import iuh.fit.lookup.LookupNaming;
 import menuGui.MenuEvent;
 
 import java.awt.Component;

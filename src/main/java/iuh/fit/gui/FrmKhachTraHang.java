@@ -1,40 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package gui;
+package iuh.fit.gui;
 
-////import connectDB.ConnectDB;
-//import dao.DAO_ChiTietHoaDon;
-//import dao.DAO_ChiTietHoaDonDoi;
-//import dao.DAO_ChiTietHoaDonHoanTra;
-//import dao.DAO_HoaDon;
-//import dao.DAO_HoaDonDoiHang;
-//import dao.DAO_HoaDonHoanTra;
-//import dao.DAO_KhachHang;
-//import dao.DAO_KhuyenMai;
-//import dao.DAO_MauSac;
-//import dao.DAO_NhaCungCap;
-//import dao.DAO_NhanVien;
-//import dao.DAO_NhomSanPham;
-//import dao.DAO_Sach;
-//import dao.DAO_SanPham;
-//import dao.DAO_VanPhongPham;
-//import entity.ChiTietHoaDon;
-//import entity.ChiTietHoaDonDoi;
-//import entity.ChiTietHoanTra;
-//import entity.HoaDon;
-//import entity.HoaDonDoiHang;
-//import entity.HoaDonHoanTra;
-//import entity.KhachHang;
-//import entity.KhuyenMai;
-//import entity.NhanVien;
-//import entity.NhomKhachHang;
-//import entity.NhomSanPham;
-//import entity.Sach;
-//import entity.VanPhongPham;
+import iuh.fit.dao.*;
+import iuh.fit.lookup.LookupNaming;
+import iuh.fit.models.*;
+
 import iuh.fit.gui.FrmChinh;
-import lookup.LookupNaming;
 import menuGui.TableActionCellEditor;
 import menuGui.TableActionCellRender;
 import menuGui.TableActionEvent;
@@ -76,13 +46,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellStyle;
-//import org.apache.poi.ss.usermodel.CreationHelper;
-//import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.ss.usermodel.Sheet;
-//import org.apache.poi.ss.usermodel.Workbook;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 public class FrmKhachTraHang extends javax.swing.JPanel {
 
@@ -262,7 +226,7 @@ public class FrmKhachTraHang extends javax.swing.JPanel {
             kh = dao_kh.getKHTheoMa(hd.getKhachHang().getMaKhachHang());
             hddh = dao_hddh.getHoaDonDoiHangtheoMaHT(hdht.getMaHoaDonHoanTra());
             if (hddh != null) {
-                dm.addRow(new Object[]{stt, hd.getMaHoaDon(), hdht.getMaHoaDonHoanTra(), hddh.getMaHoaDonDoi(), formatter.format(hdht.getNgayHoan()), kh.getTenKhachHang(), trangThai, deciFormat.format(hdht.getTienHoanTra()-hddh.getTienHoanTra())});
+                dm.addRow(new Object[]{stt, hd.getMaHoaDon(), hdht.getMaHoaDonHoanTra(), hddh.getMaHoaDonDoi(), formatter.format(hdht.getNgayHoan()), kh.getHoTenKH(), trangThai, deciFormat.format(hdht.getTienHoanTra()-hddh.getTienHoanTra())});
                 stt++;
             } else {
                 dm.addRow(new Object[]{stt, hd.getMaHoaDon(), hdht.getMaHoaDonHoanTra(), "", formatter.format(hdht.getNgayHoan()), kh.getTenKhachHang(), trangThai, deciFormat.format(hdht.getTienHoanTra())});

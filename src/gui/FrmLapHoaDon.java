@@ -501,8 +501,6 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 			}
 			count++;
 		} while (true);
-		HoaDon hdm = new HoaDon(hdID);
-		dao_hd.createHoaDon(hdm);
 		return hdID;
 	}
 

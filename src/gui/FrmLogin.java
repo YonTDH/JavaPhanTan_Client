@@ -54,8 +54,6 @@ public class FrmLogin extends JFrame {
         setTitle("Đăng Nhập");
         setVisible(true);
         
-       
-        
     }
     public void showPanelChange(JPanel a, JPanel b) {
         a.removeAll();
@@ -68,18 +66,16 @@ public class FrmLogin extends JFrame {
 		
 		try {
 			TaiKhoan taiKhoan = dao_TaiKhoan.getTaiKhoanByEmail(tenDangNhap);
-			if (taiKhoan != null) {
-				String xacThucMatKhau = taiKhoan.getMatKhau();
-				if (xacThucMatKhau.equals(matKhau)) {
 
-					//	                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
-					// mở frm chính
+			if (taiKhoan != null) {
+                boolean isOk = dao_TaiKhoan.xacThucNguoiDung(tenDangNhap, matKhau);
+				if (isOk) {
+
 					FrmChinh frmChinh = new FrmChinh();
 					frmChinh.setVisible(true);
 					
 					return true;
 				} else {
-					// Mật khẩu sai
 					JOptionPane.showMessageDialog(null, "Sai mật khẩu");
 					return false;
 				}

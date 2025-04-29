@@ -24,7 +24,7 @@ import entity.NhaCungCap;
 import entity.SanPham;
 
 public class LookupNaming {
-	private static final String URL = "rmi://localhost:7878/";
+	private static final String URL = "rmi://172.20.81.56:9090/";
 	
 	
 	public static DAO_SanPham lookup_SanPham() {

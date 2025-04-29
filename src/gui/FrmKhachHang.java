@@ -84,7 +84,7 @@ public class FrmKhachHang extends javax.swing.JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//        txtTimKH11.setEnabled(false); // chỉ cho xem mã khách hàng 
+        txtTimKH11.setEnabled(false); // chỉ cho xem mã khách hàng
 //        jComboBox3.setEnabled(false);
         thread = new Thread(this::setTimeAuto);
         thread.start();

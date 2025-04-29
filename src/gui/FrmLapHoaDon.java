@@ -139,7 +139,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 		thread = new Thread(this::setTimeAuto);
 		thread.start();
 
-		lblMaHoaDon.setText(createMaHoaDon());
+		lblMaHoaDon.setText("createMaHoaDon()");
 		lblTenKH.setText("Khách lẻ");
 		lblMaKH.setText(createMaKhachHang());
 
@@ -712,6 +712,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 
 	public synchronized void thanhToanHD() throws RemoteException {
 		if (true) {
+			String maHDNew = createMaHoaDon();
 			createInit();
 			if (tableInForSP.getRowCount() != 0) {
 				LocalDateTime ngayLap = LocalDateTime.now();
@@ -724,7 +725,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 				}
 				System.out.println(kh.toString());
 				NhanVien nv = dao_nv.getNVTheoMa("QL23102023-000007");
-				HoaDon hd = new HoaDon(lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 1, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText());
+				HoaDon hd = new HoaDon(maHDNew, ngayLap, nv, kh, jTextAreaGhiChu.getText(), 1, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText());
 				dao_hd.updateHoaDon(hd);
 				DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
 				String ma = "";
@@ -797,7 +798,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 		jTextAreaGhiChu.setText("");
 		txtTienChietKhau.setText("0.0");
 		txtTienKhachDua.setText("0.0");
-		lblMaHoaDon.setText(createMaHoaDon());
+		lblMaHoaDon.setText("createMaHoaDon()");
 		lblTienThua.setText("0.0");
 		lblTongTienThanhToan.setText("0.0");
 		lblTongTienDefault.setText("0.0");
@@ -811,6 +812,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 	}
 
 	public synchronized void themDSCho() throws RemoteException {
+		String maHDNew = createMaHoaDon();
 		if (true) {
 			if (tableInForSP.getRowCount() != 0) {
 				LocalDateTime ngayLap = LocalDateTime.now();
@@ -824,7 +826,7 @@ public class FrmLapHoaDon extends javax.swing.JPanel {
 				}
 				System.out.println(kh.toString());
 				NhanVien nv = dao_nv.getNVTheoMa("QL23102023-000007");
-				HoaDon hd = new HoaDon(lblMaHoaDon.getText(), ngayLap, nv, kh, jTextAreaGhiChu.getText(), 0, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText());
+				HoaDon hd = new HoaDon(maHDNew, ngayLap, nv, kh, jTextAreaGhiChu.getText(), 0, Double.parseDouble(lblTongTienThanhToan.getText()), Double.parseDouble(txtTienChietKhau.getText()), txtMaKhuyenMai.getText());
 				dao_hd.updateHoaDon(hd);
 				DefaultTableModel md = (DefaultTableModel) tableInForSP.getModel();
 				String ma = "";

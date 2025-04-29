@@ -63,32 +63,21 @@ public class FrmLogin extends JFrame {
     }
     
 	public boolean xacThucNguoiDung(String tenDangNhap, String matKhau) {
-		
-		try {
-			TaiKhoan taiKhoan = dao_TaiKhoan.getTaiKhoanByEmail(tenDangNhap);
-
-			if (taiKhoan != null) {
-                boolean isOk = dao_TaiKhoan.xacThucNguoiDung(tenDangNhap, matKhau);
-				if (isOk) {
-
-					FrmChinh frmChinh = new FrmChinh();
-					frmChinh.setVisible(true);
-					
-					return true;
-				} else {
-					JOptionPane.showMessageDialog(null, "Sai mật khẩu");
-					return false;
-				}
-			} else {
-				// Tên đăng nhập không tồn tại
-				JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
-				return false;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Lỗi SQL");
-		}
-		return false;
+        try {
+            boolean isOk = dao_TaiKhoan.xacThucNguoiDung(tenDangNhap, matKhau);
+            if (isOk) {
+                FrmChinh frmChinh = new FrmChinh();
+                frmChinh.setVisible(true);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu sai");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi SQL");
+            return false;
+        }
 	}
     
    
